@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Let's Skate</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% load static %}	
+    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+  <style>
+    body {
+  background: url("static/img/skate.gif") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+
+  </style>
+
+</head>
+
+<body class="bg-dark text-white">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  <div class="container">
+    <h1 class="logo_title text-center mt-5">Let's Skate!</h1>
+    <h3 class="logo_title text-center mb-5">Sign in to view Skate Spots</h3>
+    <section class="text-danger text-center">
+        {% if messages %}
+        <ul class="list-unstyled d-inline-block">
+          {% for message in messages %}
+          <li class="text-left">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </section>
+    <div class="card-deck ">
+      
+      <div style="background-color: transparent"  class="card text-white">
+        <div class="card-body text-center">
+          <span class="logo_title mt-5 text-white h3">Register</span>
+          <form action="/register" method="post">
+            {% csrf_token %}
+            <div class="input-group form-group mt-2">
+              <input type="text" name="first_name" class="form-control" placeholder="First Name">
+            </div>
+            <div class="input-group form-group">
+              <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+            </div>
+            <div class="input-group form-group">
+              <input type="text" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-group form-group">
+               <div style="background-color: black" class="d-block p-2 text-white">
+                 <span  ">Birthday:</span>
+               </div> 
+                <input type="date" name="birthday" class="form-control rounded">
+            </div>
+            <div class="input-group form-group">
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="input-group form-group">
+              <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+            </div>
+
+            <div class="form-group">
+              <input style="background-color: black" type="submit" name="btn" value="Register" class="btn btn-outline-primary float-left login_btn">
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div style="background-color: transparent"  class="card text-white">
+        <div class="card-body text-center">
+          <span class="logo_title mt-5 text-white h3">Login</span>
+          <form action="/login" method="post">
+            {% csrf_token %}
+            <div class="input-group form-group mt-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="email" class="form-control" value="demo@demo.com">
+            </div>
+
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" name="password" class="form-control" value="Password1!">
+            </div>
+
+            <div class="form-group">
+              <input style="background-color: black" type="submit" name="btn" value="Login" class="btn btn-outline-primary float-left login_btn">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="skateboards" />
+    <meta name="author" content="nickevansdev.com" />
+    <title>Let's Skate!</title>
+    {% load static %}
+    <link
+      rel="shortcut icon"
+      href="../static/img/favicon.ico" type="image/x-icon"
+    />
+    <!-- Bootstrap CSS File -->
+    <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  
+    <!-- Main Stylesheet File -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="page-top">
+    <!--/ Nav Star /-->
+    <nav
+      class="navbar navbar-b navbar-trans navbar-expand-md fixed-top"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand js-scroll" href="#page-top">Edit Profile</a>
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarDefault"
+          aria-controls="navbarDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div
+          class="navbar-collapse collapse justify-content-end"
+          id="navbarDefault"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/spot">Add A Spot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/{{user.id}}">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/ Nav End /-->
+
+    <!--/ Intro Skew Star /-->
+    <div
+      id="home"
+      class="intro route bg-image"
+    >
+      <div class="overlay-itro"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <span class="logo_title mt-5 text-white mx-3 my-3 h3">Your Information</span>
+            <section class="text-danger text-center">
+              {% if messages %}
+              <ul class="list-unstyled d-inline-block">
+                {% for message in messages %}
+                <li class="text-left">{{ message }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </section>
+            <form
+              action="/update/{{user.id}}"
+              method="post"
+              enctype="multipart/form-data"
+              class="mx-4 my-4"
+            >
+              {% csrf_token %}
+              <div class="input-group form-group mt-2">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>First Name:</span>
+                </div>
+                <input
+                  type="text"
+                  name="first_name"
+                  class="form-control rounded"
+                  placeholder="{{user.first_name}}"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>Last Name:</span>
+                </div>
+                <input
+                  type="text"
+                  name="last_name"
+                  class="form-control rounded"
+                  placeholder="{{user.last_name}}"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>Email:</span>
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control rounded"
+                  placeholder="{{user.email}}"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>Birthday:</span>
+                </div>
+                <input
+                  type="date"
+                  name="birthday"
+                  class="form-control rounded"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>Password:</span>
+                </div>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control rounded"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div  style="background-color: black"
+                  class="d-block p-2 text-white">
+                  <span>Confirm:</span>
+                </div>
+                <input
+                  type="password"
+                  name="confirm_password"
+                  class="form-control rounded"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  name="btn"
+                  value="Update"
+                  class="btn btn-outline-danger text-white float-left login_btn"
+                />
+                <a class="btn btn-outline-success text-white float-left mx-2" href="/home"
+                  >Cancel</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Intro Skew End /-->
+
+    <!-- JavaScript Libraries -->
+
+    <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="../static/lib/popper/popper.min.js"></script>
+    <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/lib/easing/easing.min.js"></script>
+    <script src="../static/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../static/lib/counterup/jquery.counterup.js"></script>
+    <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../static/lib/typed/typed.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>

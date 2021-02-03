@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Message Board</title>
+  {% load static %}	
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
+
+   <nav class="navbar navbar-expand navbar-dark rounded bg-primary">
+      <h1 class="navbar-brand">Skate Spots Message Board</h1>
+      <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
+        
+        <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <!-- change to add route -->
+              <a class="nav-link" href="/spot">Add A Spot</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/wall">Message Board</a>
+              </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/profile/{{user.id}}">Edit Profile</a>
+              </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        
+      </ul>
+  
+      </div>
+     </nav>
+
+
+
+  
+
+   
+    <!-- <div class="card-body bg-dark text-left text-white d-block"> -->
+       
+        
+        <!-- <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{message.user.photo}}"></img> -->
+        <span class="logo_title text-primary">{{message.user.first_name}} {{message.user.last_name}} - {{message.created_at}} </span>
+
+      <!-- </div> -->
+
+        <p type="text" class="form-control my-2 ml-2">{{message.message}}</p>
+   
+
+
+    {% for comment in comments %}
+    {% if comment.message.id == message.id %}
+    {% if comment.user != message.user  %}
+    <!-- <div class="card-body bg-dark text-left my-4 mx-4 py-2 text-white d-block"> -->
+        <!-- <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{comment.user.photo}}"></img> -->
+      {% endif %}
+      {% if comment.user == message.user  %}
+      <!-- <div class="card-body bg-dark text-left my-4 mx-4 py-2 text-white d-block"> -->
+          <!-- <img class="d-inline-block my-2" style="height: 30px; width: 30px;" alt="userlogo" src="media/{{comment.user.photo}}"></img> -->
+        {% endif %}
+
+      <span class="logo_title my-2 text-danger">{{comment.user.first_name}} {{comment.user.last_name}} - {{comment.created_at}} </span>
+        <p type="text" class="form-control ml-5">{{comment.comment}}</p>
+    <!-- </div> -->
+    {% endif %}
+    {% endfor %}
+    <form action="/add_comment/" method="post">
+      {% csrf_token %}
+      <!-- <div class="card-body bg-dark text-left my-5 mx-4 py-2 text-white d-block"> -->
+          <input type="hidden" name="comment_id"value={{message.id}}>
+          <span class="logo_title my-2 ml-2">Add a comment</span>
+          <textarea type="text" name="comment" class="form-control my-2"></textarea>
+          <input type="submit" name="btn" value="Add" class="btn btn-outline-primary float-left login_btn my-2">
+      <!-- </div> -->
+    </form>
+
+
+</div>
+</body>
+</html>

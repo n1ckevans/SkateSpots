@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="skateboards" />
+    <meta name="author" content="nickevansdev.com" />
+    <title>Let's Skate!</title>
+    {% load static %}
+    <link
+      rel="shortcut icon"
+      href="../static/img/favicon.ico" type="image/x-icon"
+    />
+    <!-- Bootstrap CSS File -->
+    <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  
+    <!-- Main Stylesheet File -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="page-top">
+
+    <!--/ Nav Star /-->
+    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll" href="#page-top">Add A Spot</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+          aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/spot">Add A Spot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/{{user.id}}">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/ Nav End /-->
+  
+    <!--/ Intro Skew Star /-->
+    <div id="home" class="intro route bg-image">
+      <div class="overlay-itro"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <span class="logo_title mt-5 text-white mx-3 my-3 h3">Spot Details</span>
+            <section class="text-danger text-center">
+              {% if messages %}
+              <ul class="list-unstyled d-inline-block">
+                {% for message in messages %}
+                <li class="text-left">{{ message }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </section>
+            <form action="/edit_spot/{{ spot.id}}" method="post" enctype="multipart/form-data" class="mx-4 my-4">
+              {% csrf_token %}
+              <!-- {{ form.as_p }}  -->
+              <div class="input-group form-group mt-2">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span>Spot Name:</span>
+                </div>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  placeholder="{{ spot.name }}"
+                />
+              </div>
+  
+              <!-- <div class="input-group form-group">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span class="mx-2">Photo:</span>
+                </div>
+                <input
+                  class="mx-2"
+                  type="file"
+                  id="photo"
+                  name="photo"
+                  accept="image/png, image/jpeg"
+                />
+              </div> -->
+              <div class="input-group form-group">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span>Latitude:</span>
+                </div>
+                <input type="number" step="0.0000001" name="lat" class="form-control rounded" placeholder="{{ spot.lat }}" />
+              </div>
+              <div class="input-group form-group">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span>Longitude:</span>
+                </div>
+                <input type="number" step="0.0000001" name="long" class="form-control rounded" placeholder="{{ spot.long }}"/>
+              </div>
+              <div class="input-group form-group">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span>Spot Type:</span>
+                </div>
+                <input type="text" name="kind" class="form-control rounded" placeholder="{{ spot.kind }}"/>
+              </div>
+              <div class="input-group form-group mt-2">
+                <div
+                  style="background-color: black"
+                  class="d-block p-2 text-white"
+                >
+                  <span>Description:</span>
+                </div>
+                <input type="text" name="desc" class="form-control rounded" placeholder="{{ spot.desc }}"/>
+              </div>
+  
+              <div class="form-group">
+                <a class="btn btn-outline-danger text-white float-left mx-2" href="/home">Cancel</a>
+                <input
+                  type="submit"
+                  name="btn"
+                  value="Create"
+                  class="btn btn-outline-success text-white float-left login_btn"
+                />
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Intro Skew End /-->
+  
+    <!-- JavaScript Libraries -->
+    
+    <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="../static/lib/popper/popper.min.js"></script>
+    <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/lib/easing/easing.min.js"></script>
+    <script src="../static/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../static/lib/counterup/jquery.counterup.js"></script>
+    <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../static/lib/typed/typed.min.js"></script>
+  
+    <!-- Template Main Javascript File -->
+    <script src="../static/js/main.js"></script>
+  
+  </body>
+  </html>

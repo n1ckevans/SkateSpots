@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Message Board</title>
+  {% load static %}	
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
+
+   <nav class="navbar navbar-expand navbar-dark rounded bg-primary">
+      <h1 class="navbar-brand">Skate Spots Message Board</h1>
+      <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
+        
+        <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <!-- change to add route -->
+              <a class="nav-link" href="/spot">Add A Spot</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/wall">Message Board</a>
+              </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/profile/{{user.id}}">Edit Profile</a>
+              </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        
+      </ul>
+  
+      </div>
+     </nav>
+
+
+     <div class="card-body bg-dark text-center my-5 py-2 text-white d-block">
+
+   <table class="table text-center table-hover bg-dark text-white">
+ 
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Posted By</th>
+              <th>Views</th>
+              <th>Posted Date</th>
+              <th>Update</th>
+  
+            </tr> 
+          </thead>
+          <tbody>
+            {% for message in messages reversed %}
+            <tr>
+              <td><a href="/message/{{message.id}}">{{ message.subject }}</a></td>
+              <td>{{ message.user.first_name}} {{ message.user.last_name}}</td>
+              <td>Add number of views</td>
+              <td>{{ message.created_at}}</td>
+              {% if message.user.id == user.id and message.can_delete %}
+          <td><a href="/delete/{{message.id}}">Delete</a></td>
+       {%endif%}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+     </div>
+
+  
+    <div class="card-body bg-dark text-center my-5 py-2 text-white d-block">
+        <h4 class="logo_title float-left">Post a new message</h4>
+        <br>
+        <br>
+        <form action="/add_message" method="post">
+          {% csrf_token %}
+          <div class="d-block p-2 bg-dark text-white">
+              <span class="logo_title float-left">Title:</span>
+            </div> 
+             <input type="text" name="subject" class="form-control">
+             <div class="d-block p-2 bg-dark text-white">
+                <span class="logo_title float-left">Message:</span>
+              </div> 
+          <textarea type="text" name="message" class="form-control"></textarea>
+          <input type="submit" name="btn" value="Post" class="btn btn-outline-primary float-left login_btn my-2">
+        </form>
+    </div>
+
+
+ 
+
+</div>
+</body>
+</html>

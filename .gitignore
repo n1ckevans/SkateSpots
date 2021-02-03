@@ -1,0 +1,145 @@
+config.js
+
+server/config/config.json
+
+env/
+
+# OS
+# ===========
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+# General
+# =======
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.tmp
+*.bak
+*.swp
+logs/
+
+# Node and related ecosystem
+# ==========================
+.nodemonignore
+.sass-cache/
+node_modules/
+public/lib/
+app/tests/coverage/
+.bower-*/
+.idea/
+coverage/
+.coveralls.yml
+
+# MEAN.js app and assets
+# ======================
+public/dist/
+uploads
+modules/users/client/img/profile/uploads
+config/env/local.js
+config/env/local-*.js
+*.pem
+
+
+# Compiled less and sass files
+# ============================
+modules/*/client/scss/*.css
+modules/*/client/less/*.css
+
+# Ignoring MEAN.JS's gh-pages branch for documenation
+_site/
+
+# Django / Python
+__pycache__/
+.vscode
+venv/
+db.sqlite3
+python_nc/week3/day1_sports_orm/sports_orm/apps/leagues/fixtures/data.json
+# Django #
+*.log
+*.pot
+*.pyc
+media
+secrets.py
+
+# .NET Core
+*.swp
+*.*~
+project.lock.json
+*.pyc
+nupkg/
+appsettings.json
+
+# Rider
+.idea
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.ntvs*
+*.njsproj
+*.sln
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Angular
+/dist/
+/bazel-out
+/integration/bazel/bazel-*
+e2e_test.*
+node_modules
+tools/gulp-tasks/cldr/cldr-data/
+
+# Include when developing application packages.
+pubspec.lock
+.c9
+.devcontainer/*
+!.devcontainer/recommended-devcontainer.json
+!.devcontainer/recommended-Dockerfile
+.settings/
+.vscode/launch.json
+.vscode/settings.json
+*.swo
+modules/.settings
+modules/.vscode
+.vimrc
+.nvimrc
+
+# Don't check in secret files
+*secret.js
+
+# Ignore npm/yarn debug log
+npm-debug.log
+yarn-error.log
+
+# build-analytics
+.build-analytics
+
+# rollup-test output
+/modules/rollup-test/dist/
+
+# User specific bazel settings
+.bazelrc.user
+
+.notes.md
+baseline.json
